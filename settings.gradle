@@ -1,0 +1,3 @@
+include ':sample-app',':org.pepzer.mqttdroid.client'
+project(':org.pepzer.mqttdroid.client').projectDir = new File('org.pepzer.mqttdroid.client')
+

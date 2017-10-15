@@ -1,0 +1,5 @@
+<resources>
+    <string name="permission_bind_proxy">Bind to MqttDroid Proxy</string>
+    <string name="permission_bind_auth">Bind to MqttDroid Auth</string>
+    <string name="permission_bind_rcv">Bind to MqttDroidClient Receiver</string>
+</resources>

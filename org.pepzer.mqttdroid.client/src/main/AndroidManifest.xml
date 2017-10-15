@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="org.pepzer.mqttdroid.client">
+
+    <!-- Declaring custom permissions -->
+    <permission android:name="org.pepzer.mqttdroid.BIND_PROXY"
+        android:description="@string/permission_bind_proxy"
+        android:label="@string/permission_bind_proxy"
+        android:protectionLevel="dangerous"/>
+    <permission android:name="org.pepzer.mqttdroid.BIND_AUTH"
+        android:label="@string/permission_bind_auth"
+        android:description="@string/permission_bind_auth"
+        android:protectionLevel="dangerous"/>
+    <permission android:name="org.pepzer.mqttdroid.BIND_RCV"
+        android:label="@string/permission_bind_rcv"
+        android:description="@string/permission_bind_rcv"
+        android:protectionLevel="dangerous"/>
+
+    <!-- Adding mqttdroid permissions -->
+    <uses-permission android:name="org.pepzer.mqttdroid.BIND_PROXY" />
+    <uses-permission android:name="org.pepzer.mqttdroid.BIND_AUTH" />
+
+    <application>
+    </application>
+
+</manifest>

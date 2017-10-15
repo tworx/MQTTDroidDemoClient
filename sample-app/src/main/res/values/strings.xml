@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">MQTTDroidDemoClient</string>
+    <string name="action_settings">Settings</string>
+    <string name="permission_bind_proxy">Bind to MqttDroid Proxy</string>
+    <string name="permission_bind_auth">Bind to MqttDroid Auth</string>
+    <string name="permission_bind_rcv">Bind to MqttDroidClient Receiver</string>
+    <string name="status_proxy_stopped">Proxy service is stopped.</string>
+    <string name="status_proxy_starting">Proxy service is running up.</string>
+    <string name="status_proxy_stopping">Proxy service is shutting down.</string>
+    <string name="status_proxy_connected">Proxy service connected.</string>
+    <string name="status_proxy_disconnected">Proxy service disconnected.</string>
+</resources>
