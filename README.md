@@ -37,13 +37,13 @@ A client for MQTTDroid should contain at least three elements:
 
 ## Creating a Client
 
-To make a client for MQTTDroid create an Activity that extends MQTTDroidClientActivity from the client package.  
+To make a client for MQTTDroid create an Activity that extends MqttDroidClientActivity from the client package.  
 The base Activity implements the necessary interfaces, asks the necessary permissions to the user and offers handlers for all events that could be overridden.  
 The first thing to do is to invoke 'setPublishTopics()' and 'setSubscribeTopics()' to specify the fields of the authorization request.  
 A call to 'doBindAuthService()' will bind to MQTTDroid Auth service and trigger the transmission of the request, unless 'onAuthServiceConnected()' is overridden to avoid it.  
-All MQTTDroid API endpoints are exposed through methods inside MQTTDroidClientActivity, like publish, subscribe, unsubscribe, etc.  
+All MQTTDroid API endpoints are exposed through methods inside MqttDroidClientActivity, like publish, subscribe, unsubscribe, etc.  
 All events and callback invocations are exposed through methods that could be overridden, like 'onProxyServiceConnected()', 'onSubscribeCallback()', 'onMessageArrived()'.  
-For a complete list refer to [MQTTDroidClientActivity.java](./org.pepzer.mqttdroid.client/src/main/java/org/pepzer/mqttdroid/client/MQTTDroidClientActivity.java).
+For a complete list refer to [MqttDroidClientActivity.java](./org.pepzer.mqttdroid.client/src/main/java/org/pepzer/mqttdroid/client/MqttDroidClientActivity.java)
 
 Extending the MQTTProxyReceiverService the application will receive messages even when the activity is not bound to the proxy.  
 Because for security reasons MQTTDroid binds to the service explicitly, the name of the extending service must be ProxyReceiverService.  
