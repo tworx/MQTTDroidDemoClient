@@ -11,13 +11,13 @@ To test MQTTDroidDemoClient you need to clone this repository and compile it fro
 MQTTDroid has to be installed in order to use this application, and should be properly configured to connect to an MQTT broker.  
 To verify that the connection with the server is working it might be of help to run the broker in foreground with verbose output enabled.  
 
-The sample app consists of a single activity with several buttons, the first thing to do is to click on 'Bind Auth', which triggers the transmission of an authorization request to MQTTDroid.  
+The sample app consists of a single activity with several buttons, the first thing to do is to click on 'BIND AUTH', which triggers the transmission of an authorization request to MQTTDroid.  
 At this point the client should be listed inside MQTTDroid and could be allowed through the switch on the right of the app name.  
-Coming back to MQTTDroidDemoClient it should automatically bind to the proxy service, otherwise the button 'Bind Proxy' could be clicked, a toast should
+Coming back to MQTTDroidDemoClient it should automatically bind to the proxy service, otherwise the button 'BIND PROXY' could be clicked, a toast should
 appear notifying that the app is now allowed to transmit.
 
-By clicking on one of the two 'PUB ..' buttons of the third row a publish is sent to MQTTDroid and, if the client is allowed, the message should be forwarded to the broker.  
-The two 'SUB ..' buttons send a subscribe to MQTTDroid, the subscribed topics are different and the corresponding 'Pub ..' buttons right below publish to those topics.  
+By clicking on one of the two 'PUB ..\*' buttons of the third row a publish is sent to MQTTDroid and, if the client is allowed, the message should be forwarded to the broker.  
+The two 'SUB ..\*' buttons send a subscribe to MQTTDroid, the subscribed topics are different and the corresponding 'PUB ..*' buttons right below publish to those topics.  
 After clicking on a subscribe button, the publish button below in the same column will send a message that should go to the broker and back to the client and finally printed on screed through a toast.
 
 The two red buttons are respectively an attempt to publish and subscribe to topics that are not present among those authorized, MQTTDroid should ignore the requests.
@@ -26,7 +26,7 @@ The two red buttons are respectively an attempt to publish and subscribe to topi
 
 This repository contains two main modules:
 
-- a client library under 'org.pepzer.mqttdroid.client',
+- a client library for MQTTDroid under 'org.pepzer.mqttdroid.client',
 - a demo client that uses and extends the library under 'sample-app'.
 
 A client for MQTTDroid should contain at least three elements:
@@ -38,7 +38,7 @@ A client for MQTTDroid should contain at least three elements:
 ## Creating a Client
 
 To make a client for MQTTDroid create an Activity that extends MQTTDroidClientActivity from the client package.  
-The base Activity implements the necessary interfaces, requests the permissions to the user and offers handlers for all events that could be overridden.
+The base Activity implements the necessary interfaces, asks the necessary permissions to the user and offers handlers for all events that could be overridden.  
 The first thing to do is to invoke 'setPublishTopics()' and 'setSubscribeTopics()' to specify the fields of the authorization request.  
 A call to 'doBindAuthService()' will bind to MQTTDroid Auth service and trigger the transmission of the request, unless 'onAuthServiceConnected()' is overridden to avoid it.  
 All MQTTDroid API endpoints are exposed through methods inside MQTTDroidClientActivity, like publish, subscribe, unsubscribe, etc.  
@@ -50,6 +50,7 @@ Because for security reasons MQTTDroid binds to the service explicitly, the name
 In the manifest the service must be protected by the permission org.pepzer.mqttdroid.BIND_RCV, for other details refer to [AndroidManifest.xml](./sample-app/src/main/AndroidManifest.xml).
 
 ## Contacts
+
 [Giuseppe Zerbo](https://github.com/pepzer), [giuseppe (dot) zerbo (at) gmail (dot) com](mailto:giuseppe.zerbo@gmail.com).
 
 ## License
