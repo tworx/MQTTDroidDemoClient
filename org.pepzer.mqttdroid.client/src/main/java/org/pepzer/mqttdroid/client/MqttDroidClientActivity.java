@@ -15,12 +15,13 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Message;
 import android.os.RemoteException;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import org.pepzer.mqttdroid.IMQTTDroidAuth;
 import org.pepzer.mqttdroid.IMQTTDroidNet;
@@ -48,15 +49,15 @@ public class MqttDroidClientActivity extends AppCompatActivity {
         ArrayList<String> permissions = new ArrayList<>();
 
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.BIND_AUTH)
+                "org.pepzer.mqttdroid.BIND_AUTH")
                 != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.BIND_AUTH);
+            permissions.add("org.pepzer.mqttdroid.BIND_AUTH");
         }
 
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.BIND_PROXY)
+                "org.pepzer.mqttdroid.BIND_PROXY")
                 != PackageManager.PERMISSION_GRANTED) {
-            permissions.add(Manifest.permission.BIND_PROXY);
+            permissions.add("org.pepzer.mqttdroid.BIND_PROXY");
         }
 
         if (permissions.size() > 0) {
@@ -206,23 +207,21 @@ public class MqttDroidClientActivity extends AppCompatActivity {
 
     protected void doBindAuthService() {
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.BIND_AUTH)
+                "org.pepzer.mqttdroid.BIND_AUTH")
                 == PackageManager.PERMISSION_GRANTED) {
             Intent i = new Intent();
             i.setClassName("org.pepzer.mqttdroid", "org.pepzer.mqttdroid.AuthService");
-            bindService(i, authConnection, Context.BIND_AUTO_CREATE);
-            authIsBound = true;
+            authIsBound = bindService(i, authConnection, Context.BIND_AUTO_CREATE);
         }
     }
 
     protected void doBindProxyService() {
         if (ContextCompat.checkSelfPermission(this,
-                Manifest.permission.BIND_PROXY)
+                "org.pepzer.mqttdroid.BIND_PROXY")
                 == PackageManager.PERMISSION_GRANTED) {
             Intent i = new Intent();
             i.setClassName("org.pepzer.mqttdroid", "org.pepzer.mqttdroid.ProxyService");
-            bindService(i, proxyConnection, Context.BIND_ABOVE_CLIENT);
-            proxyIsBound = true;
+            proxyIsBound = bindService(i, proxyConnection, Context.BIND_ABOVE_CLIENT);
         }
     }
 
@@ -457,6 +456,7 @@ public class MqttDroidClientActivity extends AppCompatActivity {
         if (proxyIsBound && proxyService != null) {
             try {
                 success = proxyService.subscribe(topic, qos);
+                Log.i(TAG, "subscribe result: " + success);
             } catch (RemoteException e) {
                 e.printStackTrace();
             }
