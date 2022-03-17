@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/MQTTDroidDemoClient.iml" filepath="$PROJECT_DIR$/MQTTDroidDemoClient.iml" />
-      <module fileurl="file://$PROJECT_DIR$/org.pepzer.mqttdroid.client/org.pepzer.mqttdroid.client.iml" filepath="$PROJECT_DIR$/org.pepzer.mqttdroid.client/org.pepzer.mqttdroid.client.iml" />
-      <module fileurl="file://$PROJECT_DIR$/sample-app/sample-app.iml" filepath="$PROJECT_DIR$/sample-app/sample-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/MQTTDroidDemoClient.iml" filepath="$PROJECT_DIR$/.idea/modules/MQTTDroidDemoClient.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/org.pepzer.mqttdroid.client/MQTTDroidDemoClient.org.pepzer.mqttdroid.client.iml" filepath="$PROJECT_DIR$/.idea/modules/org.pepzer.mqttdroid.client/MQTTDroidDemoClient.org.pepzer.mqttdroid.client.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sample-app/MQTTDroidDemoClient.sample-app.iml" filepath="$PROJECT_DIR$/.idea/modules/sample-app/MQTTDroidDemoClient.sample-app.iml" />
     </modules>
   </component>
 </project>
