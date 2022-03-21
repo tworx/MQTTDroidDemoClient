@@ -211,7 +211,8 @@ public class MqttDroidClientActivity extends AppCompatActivity {
                 == PackageManager.PERMISSION_GRANTED) {
             Intent i = new Intent();
             i.setClassName("org.pepzer.mqttdroid", "org.pepzer.mqttdroid.AuthService");
-            authIsBound = bindService(i, authConnection, Context.BIND_AUTO_CREATE);
+            authIsBound = bindService(i, authConnection, Context.BIND_ABOVE_CLIENT);
+            Log.i(TAG, "authIsBound = " + authIsBound);
         }
     }
 
