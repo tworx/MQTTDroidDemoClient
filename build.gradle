@@ -17,6 +17,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven {
+            allowInsecureProtocol = true
+            url = 'http://buildserver.tworx.com/nexus/repository/maven-public/'
+        }
+        mavenLocal()
     }
 }
 

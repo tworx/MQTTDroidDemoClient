@@ -13,7 +13,7 @@ import android.os.IBinder;
 import android.os.Message;
 import android.util.Log;
 
-import org.pepzer.mqttdroid.IMQTTReceiver;
+import com.tworx.eud.mqttdroid.IMQTTReceiver;
 
 public class MqttProxyReceiverService extends Service {
 

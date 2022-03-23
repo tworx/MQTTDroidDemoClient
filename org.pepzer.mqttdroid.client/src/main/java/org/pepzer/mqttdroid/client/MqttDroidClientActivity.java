@@ -23,9 +23,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
-import org.pepzer.mqttdroid.IMQTTDroidAuth;
-import org.pepzer.mqttdroid.IMQTTDroidNet;
-import org.pepzer.mqttdroid.IMQTTDroidNetCallback;
+import com.tworx.eud.mqttdroid.IMQTTDroidAuth;
+import com.tworx.eud.mqttdroid.IMQTTDroidNet;
+import com.tworx.eud.mqttdroid.IMQTTDroidNetCallback;
 
 import java.util.ArrayList;
 import java.util.HashMap;
