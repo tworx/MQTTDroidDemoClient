@@ -21,9 +21,11 @@ android {
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation (project(':org.pepzer.mqttdroid.client')){
+    implementation (project(':org.pepzer.mqttdroid.client')) {
         transitive=true
     }
+    implementation 'com.tworx.eud:mqttdroid:1.0.1-SNAPSHOT'
+
     testImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })

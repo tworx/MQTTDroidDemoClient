@@ -14,6 +14,7 @@ import android.os.Message;
 import android.util.Log;
 
 import com.tworx.eud.mqttdroid.IMQTTReceiver;
+import com.tworx.eud.mqttdroid.Utils;
 
 public class MqttProxyReceiverService extends Service {
 
@@ -36,7 +37,7 @@ public class MqttProxyReceiverService extends Service {
 
     private boolean callerAllowed() {
         PackageManager pm = getApplicationContext().getPackageManager();
-        String caller = MqttDroidUtils.getCallerPackage(pm);
+        String caller = Utils.getCallerPackage(pm);
         if (proxyNamespace.equals(caller)) {
             return true;
         }

@@ -16,6 +16,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.tworx.eud.mqttdroid.AuthState;
+import com.tworx.eud.mqttdroid.ProxyState;
+
 import org.pepzer.mqttdroid.client.MqttMsgContainer;
 import org.pepzer.mqttdroid.client.MqttDroidClientActivity;
 import org.pepzer.mqttdroid.client.MqttDroidUtils;
@@ -178,7 +181,7 @@ public class MainActivity extends MqttDroidClientActivity {
 
     @Override
     protected void onProxyServiceConnected() {
-        MqttDroidUtils.AuthState authState = getAuthState();
+        AuthState authState = getAuthState();
         String text;
 
         switch (authState) {
@@ -198,12 +201,11 @@ public class MainActivity extends MqttDroidClientActivity {
         Toast.makeText(this, text,
                 Toast.LENGTH_SHORT).show();
 
-        MqttDroidUtils.ProxyState proxyState = getProxyState();
-        onProxyStateChange(proxyState);
+        onProxyStateChange(getProxyState());
     }
 
     @Override
-    protected void onProxyStateChange(MqttDroidUtils.ProxyState proxyState) {
+    protected void onProxyStateChange(ProxyState proxyState) {
         TextView proxyStateText = (TextView) findViewById(R.id.proxy_status);
         switch (proxyState) {
             case PROXY_CONNECTED:

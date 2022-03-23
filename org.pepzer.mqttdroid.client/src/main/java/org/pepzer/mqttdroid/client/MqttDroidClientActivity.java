@@ -23,9 +23,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.tworx.eud.mqttdroid.AuthState;
 import com.tworx.eud.mqttdroid.IMQTTDroidAuth;
 import com.tworx.eud.mqttdroid.IMQTTDroidNet;
 import com.tworx.eud.mqttdroid.IMQTTDroidNetCallback;
+import com.tworx.eud.mqttdroid.ProxyState;
+import com.tworx.eud.mqttdroid.Utils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -285,7 +288,7 @@ public class MqttDroidClientActivity extends AppCompatActivity {
                     break;
                 case MSG_PROXY_CHANGE:
                     int proxyState = (int) msg.obj;
-                    onProxyStateChange(proxyStateToEnum(proxyState));
+                    onProxyStateChange(Utils.proxyStateIntToEnum(proxyState));
                     break;
                 case MSG_ARRIVED:
                     MqttMsgContainer msgContainer = (MqttMsgContainer) msg.obj;
@@ -318,8 +321,8 @@ public class MqttDroidClientActivity extends AppCompatActivity {
                 subList.add(subscribeTopics[i]);
             }
             HashMap<String, ArrayList<String>> topics = new HashMap<>();
-            topics.put(MqttDroidUtils.REQ_PUB, pubList);
-            topics.put(MqttDroidUtils.REQ_SUB, subList);
+            topics.put(Utils.REQ_PUB, pubList);
+            topics.put(Utils.REQ_SUB, subList);
 
             try {
                 authService.authRequest(topics, update);
@@ -363,7 +366,7 @@ public class MqttDroidClientActivity extends AppCompatActivity {
         //TODO: Override
     }
 
-    protected void onProxyStateChange(MqttDroidUtils.ProxyState proxyState) {
+    protected void onProxyStateChange(ProxyState proxyState) {
         //TODO: Override
     }
 
@@ -371,7 +374,7 @@ public class MqttDroidClientActivity extends AppCompatActivity {
         //TODO: Override
     }
 
-    public MqttDroidUtils.AuthState getAuthState() {
+    public AuthState getAuthState() {
         int authState = -1;
         if (proxyIsBound && proxyService != null) {
             try {
@@ -380,50 +383,10 @@ public class MqttDroidClientActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        MqttDroidUtils.AuthState authEnum;
-        switch (authState) {
-            case MqttDroidUtils.APP_ALLOWED:
-                authEnum = MqttDroidUtils.AuthState.APP_ALLOWED;
-                break;
-            case MqttDroidUtils.APP_REFUSED:
-                authEnum = MqttDroidUtils.AuthState.APP_REFUSED;
-                break;
-            case MqttDroidUtils.APP_UNKNOWN:
-                authEnum = MqttDroidUtils.AuthState.APP_UNKNOWN;
-                break;
-            default:
-                authEnum = MqttDroidUtils.AuthState.UNKNOWN;
-                break;
-        }
-        return authEnum;
+        return Utils.authStateIntToEnum(authState);
     }
 
-    private MqttDroidUtils.ProxyState proxyStateToEnum(int proxyState) {
-        MqttDroidUtils.ProxyState proxyEnum;
-        switch (proxyState) {
-            case MqttDroidUtils.PROXY_CONNECTED:
-                proxyEnum = MqttDroidUtils.ProxyState.PROXY_CONNECTED;
-                break;
-            case MqttDroidUtils.PROXY_DISCONNECTED:
-                proxyEnum = MqttDroidUtils.ProxyState.PROXY_DISCONNECTED;
-                break;
-            case MqttDroidUtils.PROXY_STARTING:
-                proxyEnum = MqttDroidUtils.ProxyState.PROXY_STARTING;
-                break;
-            case MqttDroidUtils.PROXY_STOPPING:
-                proxyEnum = MqttDroidUtils.ProxyState.PROXY_STOPPING;
-                break;
-            case MqttDroidUtils.PROXY_STOPPED:
-                proxyEnum = MqttDroidUtils.ProxyState.PROXY_STOPPED;
-                break;
-            default:
-                proxyEnum = MqttDroidUtils.ProxyState.UNKNOWN;
-                break;
-        }
-        return proxyEnum;
-    }
-
-    public MqttDroidUtils.ProxyState getProxyState() {
+    public ProxyState getProxyState() {
         int proxyState = -1;
         if (proxyIsBound && proxyService != null) {
             try {
@@ -432,7 +395,7 @@ public class MqttDroidClientActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
         }
-        return proxyStateToEnum(proxyState);
+        return Utils.proxyStateIntToEnum(proxyState);
     }
 
     /**
