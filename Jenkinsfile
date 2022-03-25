@@ -13,9 +13,11 @@ pipeline {
         stage('Build sample client apps') {
             steps {
                 script {                    
+                    // need to save the host name of the repo as we are using docker compose network which does not resolve inside docker image
+                    sh "getent hosts nginx | awk '{ print \$1 }' > repo-ip.txt"
                     docker.withRegistry("${TWORX_DOCKER_REPO}", "${registryCredentials}") {
                         docker.image("${androidSDKImageName}").inside {
-                            sh "./gradlew -Pkeystore=${debugKeyStore} -PstorePass=${debugKeyStorePwd} -Palias=${debugKeyStoreAlias} -PkeyPass=${debugKeyPwd} test assembleDebug"
+                            sh "./gradlew -Ptworxrepo=http://\$(cat repo-ip.txt) -Pkeystore=${debugKeyStore} -PstorePass=${debugKeyStorePwd} -Palias=${debugKeyStoreAlias} -PkeyPass=${debugKeyPwd} test assembleDebug"
                         }
                     }
                 }
