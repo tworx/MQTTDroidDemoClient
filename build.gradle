@@ -14,9 +14,15 @@ buildscript {
 }
 
 allprojects {
+    def tworxrepoUrl = tworxrepo + '/nexus/repository/maven-public/'
     repositories {
         google()
         jcenter()
+        maven {
+            allowInsecureProtocol = true
+            url = tworxrepoUrl
+        }
+        mavenLocal()
     }
 }
 

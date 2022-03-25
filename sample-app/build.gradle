@@ -4,11 +4,19 @@ android {
     compileSdkVersion 31
     defaultConfig {
         applicationId "org.pepzer.mqttdroid.democlient"
-        minSdkVersion 16
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    signingConfigs {
+        jenkins {
+            keyAlias alias
+            keyPassword keyPass
+            storeFile file(keystore)
+            storePassword storePass
+        }
     }
     buildTypes {
         release {
@@ -17,15 +25,18 @@ android {
         }
     }
 }
+// for use in local builds
+if (keystore != "default") {
+    android.buildTypes.debug.signingConfig = android.signingConfigs.jenkins
+}
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
-    implementation (project(':org.pepzer.mqttdroid.client')){
+    implementation (project(':org.pepzer.mqttdroid.client')) {
         transitive=true
     }
-    testImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
+    implementation 'com.tworx.eud:mqttdroid:1.0.1-SNAPSHOT'
+
+    testImplementation 'junit:junit:4.13.2'
 }

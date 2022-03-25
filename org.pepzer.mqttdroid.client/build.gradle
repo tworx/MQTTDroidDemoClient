@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 31
     defaultConfig {
-        minSdkVersion 16
+        minSdkVersion 28
         targetSdkVersion 30
         versionCode 1
         versionName "0.1"
@@ -16,10 +16,6 @@ android {
         }
     }
 
-    dexOptions {
-        preDexLibraries = false
-    }
-
     lintOptions {
         abortOnError false
     }
@@ -27,11 +23,9 @@ android {
 
 dependencies {
     implementation 'androidx.appcompat:appcompat:1.4.1'
+    api 'com.tworx.eud:mqttdroid:1.0.1'
 
-    testImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
 }
 
 // Generate Sources Jar
